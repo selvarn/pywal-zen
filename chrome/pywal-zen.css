@@ -1,0 +1,59 @@
+/* pywal-zen
+ * zen ui colors from pywalfox theme, updates live on `pywalfox update`
+ * needs zen.theme.disable-lightweight = false (see user.js)
+ */
+
+:root[lwtheme] {
+  --pw-bg: var(--lwt-accent-color);                /* color0 */
+  --pw-bg-alt: var(--toolbar-background-color);
+  --pw-fg: var(--lwt-text-color);                  /* color15 */
+  --pw-accent: var(--lwt-toolbar-field-highlight); /* color10 */
+
+  --pw-surface: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--pw-accent) 14%, var(--pw-bg)) 0%,
+    var(--pw-bg) 55%,
+    color-mix(in srgb, var(--pw-accent) 6%, var(--pw-bg)) 100%
+  );
+
+  --zen-primary-color: var(--pw-accent) !important;
+  --toolbox-textcolor: var(--pw-fg) !important;
+  --zen-branding-bg: var(--pw-bg) !important;
+  --zen-branding-bg-reverse: var(--pw-fg) !important;
+  --zen-colors-tertiary: var(--pw-bg) !important;
+  --zen-dialog-background: var(--pw-bg-alt) !important;
+}
+
+/* bg + sidebar. zen sets the workspace gradient inline on these, so :root isn't enough */
+:root[lwtheme] .zen-browser-generic-background {
+  --zen-main-browser-background: var(--pw-surface) !important;
+  --zen-main-browser-background-toolbar: var(--pw-surface) !important;
+  --zen-main-browser-background-old: var(--pw-surface) !important;
+  --zen-main-browser-background-toolbar-old: var(--pw-surface) !important;
+}
+
+/* ctrl+t / ctrl+l popup */
+:root[lwtheme] #urlbar[breakout-extend] .urlbar-background {
+  background: color-mix(in srgb, var(--pw-accent) 5%, var(--pw-bg)) !important;
+  outline: 1px solid color-mix(in srgb, var(--pw-accent) 45%, transparent) !important;
+}
+:root[lwtheme] .urlbarView-row {
+  color: color-mix(in srgb, var(--pw-fg) 75%, transparent) !important;
+
+  &:hover {
+    &,
+    & .urlbarView-favicon {
+      background-color: color-mix(in srgb, var(--pw-accent) 8%, transparent) !important;
+    }
+  }
+
+  &[selected] {
+    background-color: color-mix(in srgb, var(--pw-accent) 16%, transparent) !important;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pw-accent) 60%, transparent) !important;
+
+    & *,
+    & .urlbarView-title-separator::before {
+      color: var(--pw-fg) !important;
+    }
+  }
+}
